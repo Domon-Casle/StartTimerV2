@@ -1,0 +1,13 @@
+<div>
+  <div fxFlex="35" fxLayoutAlign="center center" class="myTimeHolder">
+    <input type="text" [ngModel]="myTime" (ngModelChange)="myTimeChanged($event)" class="myTimeInput" />
+  </div>
+
+  <div fxFlex="30" fxLayoutAlign="center center" style="border-radius: 5px; margin: 1px 5px 1px 5px;">
+    {{ myTimeString }}
+  </div>
+
+  <div fxFlex="35" fxLayoutAlign="center center" class="myTimeHolder">
+    <input type="text" placeholder="What? Who? Why?" class="myTimeInput" />
+  </div>
+</div>

@@ -1,0 +1,51 @@
+<div>
+  <div fxFlex="35">
+    <div fxLayoutAlign="center center" class="timeLabel">
+      Set Start Time
+    </div>
+
+    <div style="height: 80%;" fxLayoutAlign="center center">
+      <ngb-timepicker 
+        [ngModel]="time"
+        (ngModelChange)="startTimeChange($event)" 
+        [seconds]="true" 
+        [hourStep]="hourStep" 
+        [minuteStep]="minuteStep" 
+        [secondStep]="secondStep" 
+        [meridian]="true"
+        style="width: 100%;"
+        ></ngb-timepicker>
+    </div>
+  </div>
+
+  <div fxFlex="30">
+    <div fxLayoutAlign="center center" class="timeLabel">
+      Start Time
+    </div>
+
+    <div style="height: 80%; font-size: 20px;" fxLayoutAlign="center center">
+      {{ myTimeString }}
+    </div>
+  </div>
+
+  <div fxFlex="35">
+      <div fxLayoutAlign="center center" class="timeLabel">
+        Notes
+      </div>
+
+      <div style="height: 80%;" fxLayoutAlign="end center">
+        <button type="button" (click)="addSubTime()" style="background-color: transparent; border: 0px;" >
+          <img src="../../assets/add.png" />
+        </button>
+      </div>
+  </div>
+</div>
+
+<div>
+  <div *ngFor="let subTime of timeChildren">
+    <app-sub-timer
+      [parentTime]="time"
+      [defaultValue]="subTime"
+    ></app-sub-timer>
+  </div>
+</div>

@@ -9,6 +9,9 @@ import { TimeHelper } from '../helper/timeHelper';
 })
 export class SubTimerComponent implements OnInit {
 
+  private timeOutArray: any;
+
+  public myColorClass: string;
   public myTimeString: string;
   public myTime: string = "";
 
@@ -18,6 +21,8 @@ export class SubTimerComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+    this.myColorClass = "noColor";
+
     this.myTime = this.defaultValue.toString();
     this.setMyStartTime();
   }
@@ -81,15 +86,16 @@ export class SubTimerComponent implements OnInit {
 
     if (value.length > 0 && value !== " ")
     {
-      var converTime = {
+      var convertTime = {
         hour: this.parentTime.hour,
         minute: this.parentTime.minute,
         second: this.parentTime.second
       };
 
-      converTime.minute -= minutes;
-      converTime.second -= seconds;
-      this.myTimeString = TimeHelper.convertTime(converTime) + " (" + this.myTime + " before)";
+      convertTime.minute -= minutes;
+      convertTime.second -= seconds;
+      this.myTimeString = TimeHelper.convertTime(convertTime) + " (" + this.myTime + " before)";
+      this.setColorTimeouts(convertTime);
     }
     else if (value === " ")
     {
@@ -98,6 +104,57 @@ export class SubTimerComponent implements OnInit {
     else
     {
       this.myTimeString = TimeHelper.convertTime(this.parentTime);
+      this.setColorTimeouts(this.parentTime);
+    }
+  }
+
+  setColorTimeouts(time) {
+    if (!this.timeOutArray) {
+      this.timeOutArray = [];
+    }
+
+    if (this.timeOutArray.length > 0) {
+      this.timeOutArray.forEach(clearTimeout);
+
+      this.timeOutArray = [];
+    }
+
+    // Set Time outs
+    var outTimeDate = new Date();
+    outTimeDate.setHours(time.hour);
+    outTimeDate.setMinutes(time.minute);
+    outTimeDate.setSeconds(time.second);
+
+    var redTimer = outTimeDate.getTime() - Date.now() - 30000;
+    if (redTimer > 0)
+    {
+        this.timeOutArray.push(setTimeout(() => {
+          this.myColorClass = "redColor";
+        }, redTimer));
+    }
+
+    var orangeTimer = outTimeDate.getTime() - Date.now() - 20000;
+    if (orangeTimer > 0)
+    {
+        this.timeOutArray.push(setTimeout(() => {
+          this.myColorClass = "orangeColor";
+        }, orangeTimer));
+    }
+
+    var yellowTimer = outTimeDate.getTime() - Date.now() - 10000;
+    if (yellowTimer > 0)
+    {
+        this.timeOutArray.push(setTimeout(() => {
+          this.myColorClass = "yellowColor";
+        }, yellowTimer));
+    }
+
+    var greenTimer = outTimeDate.getTime() - Date.now();
+    if (greenTimer > 0)
+    {
+        this.timeOutArray.push(setTimeout(() => {
+          this.myColorClass = "greenColor";
+        }, greenTimer));
     }
   }
 }

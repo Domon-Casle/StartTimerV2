@@ -8,7 +8,9 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'Start-Timer';
 
+  public refreshCounter: number = 0;
+
   refresh() {
-    
+    this.refreshCounter++;
   }
 }

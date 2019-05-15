@@ -1,13 +1,20 @@
 <div style="height: 100vh; background-color: black;">
-  <app-nav-bar (refreshed)="refresh"></app-nav-bar>
+  <app-nav-bar (refreshed)="refresh()"></app-nav-bar>
 
   <app-current-time></app-current-time>
 
-  <div style="padding: 0px 10px 20px 10px;">
-    <app-parent-timer></app-parent-timer>
+  <div fxLayoutAlign="center center" style="text-align: center;">
+    How to use: select start time(s), pick pre-call times. Pre-call time field supports
+    just numbers(seconds) ex. 90 (90 seconds before),
+    ##M/m(minute) ##S/s(second) ex. 1m 30s(1 minute 30 seconds before or 90 seconds before).
+    Lastly set a note as needed and enjoy!
   </div>
 
   <div style="padding: 0px 10px 20px 10px;">
-    <app-parent-timer></app-parent-timer>
+    <app-parent-timer [refreshCalled]="refreshCounter"></app-parent-timer>
+  </div>
+
+  <div style="padding: 0px 10px 20px 10px;">
+    <app-parent-timer [refreshCalled]="refreshCounter"></app-parent-timer>
   </div>
 </div>

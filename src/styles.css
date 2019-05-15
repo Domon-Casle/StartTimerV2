@@ -2,3 +2,43 @@
 * {
     color: white;
 }
+
+.noColor {
+    background-color: transparent;
+    color: white;
+    -webkit-transition: background-color 2s, color 2s;
+    transition: background-color 2s, color 2s;
+    border-radius: 6px;
+}
+
+.redColor {
+    background-color: red;
+    color: white;
+    -webkit-transition: background-color 2s, color 2s;
+    transition: background-color 2s, color 2s;
+    border-radius: 6px;
+}
+
+.orangeColor {
+    background-color: orange;
+    color: black;
+    -webkit-transition: background-color 2s, color 2s;
+    transition: background-color 2s, color 2s;
+    border-radius: 6px;
+}
+
+.yellowColor {
+    background-color: yellow;
+    color: black;
+    -webkit-transition: background-color 2s, color 2s;
+    transition: background-color 2s, color 2s;
+    border-radius: 6px;
+}
+
+.greenColor {
+    background-color: green;
+    color: white;
+    -webkit-transition: background-color 2s, color 2s;
+    transition: background-color 2s, color 2s;
+    border-radius: 6px;
+}
